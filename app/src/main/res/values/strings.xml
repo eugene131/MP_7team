@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Movie Project</string>
+    <string name="app_name">Movie Line</string>
+    <string name="login_title">로그인 페이지</string>
+    <string name="signup_title">회원가입 페이지</string>
+    <string name="login">로그인</string>
+    <string name="signup">회원가입</string>
+    <string name="haveAccount">계정 없습니까?</string>
+    <string name="nickname">닉네임</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="passwordRepeat">비밀번호 확인</string>
 </resources>

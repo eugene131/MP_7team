@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Movie Project"
-include ':app'
+include ':movie_line'
