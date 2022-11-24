@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797929979121",
+    "project_id": "movieline-6260e",
+    "storage_bucket": "movieline-6260e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797929979121:android:d3f04bbbdffc2e41fdfd50",
+        "android_client_info": {
+          "package_name": "com.example.movie_line"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797929979121-2b0efg9474ca9tql3fufv95444cs5opi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDldctE4xti-PLteukgY1N76VhacF_8IvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797929979121-2b0efg9474ca9tql3fufv95444cs5opi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
