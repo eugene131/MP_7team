@@ -1,11 +1,16 @@
 package com.example.movie_line
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var etNickname: EditText
@@ -17,6 +22,7 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var password_string: String
     lateinit var nickname_string: String
     lateinit var repeat_password_string: String
+    private lateinit var auth: FirebaseAuth
 
     val MIN_PASSWORD_LENGTH = 6;
 
@@ -39,6 +45,10 @@ class SignUpActivity : AppCompatActivity() {
         password_string = getString(R.string.password)
         repeat_password_string = getString(R.string.passwordRepeat)
         hideHint()
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
         // To show back button in actionbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -105,6 +115,19 @@ class SignUpActivity : AppCompatActivity() {
 
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show()
             // Here you can call you API
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("testFirebase", "createUserWithEmail:success")
+                        val user = auth.currentUser
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("testFirebase", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
 
         }
     }

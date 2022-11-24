@@ -1,12 +1,18 @@
 package com.example.movie_line
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+
 // test
 class MainActivity : AppCompatActivity() {
     lateinit var etEmail: EditText
@@ -15,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var email_string: String
     lateinit var password_string: String
+
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         email_string = getString(R.string.email)
         password_string = getString(R.string.password)
         hideHint()
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
         // To show back button in actionbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -62,16 +74,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Hook Click Event
-    fun performSignUp(v: View) {
+    fun performLogin(v: View) {
         if (validateInput()) {
 
             // Input is valid, here send data to your server
             val email = etEmail!!.text.toString()
             val password = etPassword!!.text.toString()
             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
-            goToMain()
+
             // Here you can call you API
-            // Check this tutorial to call server api through Google Volley Library https://handyopinion.com
+
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d("firebaseLoginTest", "signInWithEmail:success")
+                    val user = auth.currentUser
+                    goToMain()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("firebaseLoginTest", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
