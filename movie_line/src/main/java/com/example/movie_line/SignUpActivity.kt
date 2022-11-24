@@ -1,6 +1,7 @@
 package com.example.movie_line
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -104,6 +105,11 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+    fun goToLoginPage() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     fun performSignUp (view: View) {
         if (validateInput()) {
 
@@ -113,7 +119,7 @@ class SignUpActivity : AppCompatActivity() {
             val password = etPassword.text.toString()
             val repeatPassword = etRepeatPassword.text.toString()
 
-            Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"회원가입 완료",Toast.LENGTH_SHORT).show()
             // Here you can call you API
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -121,6 +127,7 @@ class SignUpActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("testFirebase", "createUserWithEmail:success")
                         val user = auth.currentUser
+                        goToLoginPage()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("testFirebase", "createUserWithEmail:failure", task.exception)
