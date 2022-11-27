@@ -1,6 +1,7 @@
 package com.example.movie_line
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +31,10 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setTitle("")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewInitializations()
     }
@@ -105,7 +110,15 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+    fun goToLoginPage() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     fun performSignUp (view: View) {
         if (validateInput()) {
@@ -141,6 +154,8 @@ class SignUpActivity : AppCompatActivity() {
                             .addOnFailureListener { e ->
                                 Log.w("firestore", "Error adding document", e)
                             }
+
+                        goToLoginPage()
 
                     } else {
                         // If sign in fails, display a message to the user.
