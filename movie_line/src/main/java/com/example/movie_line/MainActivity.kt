@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     // Hook Click Event
     fun performLogin(v: View) {
         if (validateInput()) {
-
+// test commmit
             // Input is valid, here send data to your server
             val email = etEmail!!.text.toString()
             val password = etPassword!!.text.toString()
