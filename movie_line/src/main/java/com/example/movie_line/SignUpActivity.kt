@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
@@ -104,8 +105,12 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+
+
     fun performSignUp (view: View) {
         if (validateInput()) {
+
+            val db = Firebase.firestore
 
             // Input is valid, here send data to your server
             val nickname = etNickname.text.toString()
@@ -120,7 +125,23 @@ class SignUpActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("testFirebase", "createUserWithEmail:success")
-                        val user = auth.currentUser
+                        val user_uid = auth.currentUser?.uid
+
+                        val user = hashMapOf(
+                            "uid" to "${user_uid}",
+                            "nickname" to "${nickname}",
+                            "email" to "${email}"
+                        )
+
+                        db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d("firestore", "DocumentSnapshot added with ID: ${documentReference.id}")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("firestore", "Error adding document", e)
+                            }
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("testFirebase", "createUserWithEmail:failure", task.exception)
