@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/activity_main_page.xml" value="0.21910112359550563" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/activity_notice_page.xml" value="0.2234375" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/activity_sign_up.xml" value="0.2234375" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/fragment_one.xml" value="0.2234375" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/fragment_three.xml" value="0.2234375" />
+        <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/notice_item_main.xml" value="0.2234375" />
         <entry key="..\:/Users/cascade/AndroidStudioProjects/MP_7team/movie_line/src/main/res/layout/quote_page.xml" value="0.2234375" />
       </map>
     </option>
