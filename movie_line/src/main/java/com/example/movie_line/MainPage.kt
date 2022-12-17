@@ -43,10 +43,13 @@ class MainPage : AppCompatActivity() {
         }.attach()
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, AddActivity::class.java)
+            //val intent = Intent(this, AddActivity::class.java)
+            val intent = Intent(this, AddPhotoSampleActivity::class.java)
             startActivity(intent)
         }
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)

@@ -1,6 +1,5 @@
 package com.example.movie_line
 
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -110,8 +109,8 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun goToLoginPage() {
-        val intent = Intent(this, MainActivity::class.java)
+    fun goToAddProfilePhoto() {
+        val intent = Intent(this, AddProfilePhoto::class.java)
         startActivity(intent)
     }
 
@@ -155,7 +154,7 @@ class SignUpActivity : AppCompatActivity() {
                                 Log.w("firestore", "Error adding document", e)
                             }
 
-                        goToLoginPage()
+                        goToAddProfilePhoto()
 
                     } else {
                         // If sign in fails, display a message to the user.

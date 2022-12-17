@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTest">
         <activity
+            android:name=".AddProfilePhoto"
+            android:exported="false" />
+        <activity
+            android:name=".AddPhotoSampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainPage"
             android:exported="false" />
         <activity

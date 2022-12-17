@@ -28,6 +28,8 @@
         android:layout_marginTop="24dp"
         />
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +52,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
                 android:textColorHint="#808080"
-                app:layout_constraintTop_toTopOf="parent"
                 >
 
                 <EditText
@@ -143,7 +144,9 @@
                     android:textSize="15sp"
                     android:inputType="textPassword"
                     />
+                <include layout="@layout/content_gallery_only" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <Button
@@ -153,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_repeat_password"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/signup"
+                android:text="add line"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:background="@color/black"
