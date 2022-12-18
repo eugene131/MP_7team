@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="Orientation">
-
         <TextView
             android:id="@+id/pageMenu"
             android:layout_width="637dp"
@@ -88,13 +87,21 @@
             android:text="기타"
             android:textSize="20sp" />
 
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="40dp"/>
+
         <Button
             android:id="@+id/button"
+            android:text="신고하기"
+            android:onClick="goToMain"
             android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_marginLeft="245dp"
             android:layout_marginTop="15dp"
-            android:text="신고하기"
             android:textSize="18sp" />
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
