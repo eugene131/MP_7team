@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Movie Line</string>
+
     <string name="login_title">로그인 페이지</string>
     <string name="signup_title">회원가입 페이지</string>
+    <string name="mypage_title">마이페이지</string>
+
     <string name="login">로그인</string>
     <string name="signup">회원가입</string>
     <string name="haveAccount">계정 없습니까?</string>
@@ -27,5 +30,30 @@
 
     <string name="action_camera_only">Camera Only</string>
     <string name="action_gallery_only">배경 이미지 선택하세요</string>
+
+    <string name="add_button">작성완료</string>
+
+    <string name="movie_name">movie name</string>
+
+    <string name="input_movie_line">대사 내용</string>
+
+    <string name="selected_item">Selected item:</string>
+
+    <string name="login_success">로그인 완료되었습니다</string>
+
+    <string name="signup_success">회원가입 완료되었습니다</string>
+
+    <string name="no_movie_name">영화 이름 입력하세요</string>
+
+    <string name="no_movie_line_text">대사 내용 입력하세요</string>
+
+    <string name="no_movie_type">장르 선택하세요</string>
+
+    <string name="no_movie_image">이미지 선택하세요</string>
+
+    <string-array name="movie_types">
+        <item>드라마</item>
+        <item>영화</item>
+    </string-array>
 
 </resources>

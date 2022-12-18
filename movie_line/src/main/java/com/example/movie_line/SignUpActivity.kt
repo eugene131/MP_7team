@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
         viewInitializations()
     }
 
-    fun viewInitializations() {
+    private fun viewInitializations() {
         etNickname = findViewById(R.id.et_nickname)
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     // Checking if the input in form is valid
-    fun validateInput(): Boolean {
+    private fun validateInput(): Boolean {
         if (etNickname.text.toString().equals("")) {
             etNickname.setError("Please Enter Nickname")
             return false
@@ -97,11 +97,11 @@ class SignUpActivity : AppCompatActivity() {
         return true
     }
 
-    fun isEmailValid(email: String): Boolean {
+    private fun isEmailValid(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun hideHint() {
+    private fun hideHint() {
         if (etNickname.text!!.isNotEmpty()){ etNickname.hint="" } else etNickname.hint = nickname_string
         if (etPassword.text!!.isNotEmpty()){etPassword.hint=""} else etPassword.hint = password_string
         if (etEmail.text!!.isNotEmpty()){ etEmail.hint="" } else etEmail.hint = email_string
@@ -109,7 +109,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun goToAddProfilePhoto() {
+    private fun goToAddProfilePhoto() {
         val intent = Intent(this, AddProfilePhoto::class.java)
         startActivity(intent)
     }
@@ -130,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
             val password = etPassword.text.toString()
             val repeatPassword = etRepeatPassword.text.toString()
 
-            Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.signup_success),Toast.LENGTH_SHORT).show()
             // Here you can call you API
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -140,15 +140,15 @@ class SignUpActivity : AppCompatActivity() {
                         val user_uid = auth.currentUser?.uid
 
                         val user = hashMapOf(
-                            "uid" to "${user_uid}",
-                            "nickname" to "${nickname}",
-                            "email" to "${email}"
+                            "uid" to "$user_uid",
+                            "nickname" to nickname,
+                            "email" to email
                         )
 
                         db.collection("users")
                             .add(user)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d("firestore", "DocumentSnapshot added with ID: ${documentReference.id}")
+                            .addOnSuccessListener {
+                                Log.d("firestore", "DocumentSnapshot added with ID: $email")
                             }
                             .addOnFailureListener { e ->
                                 Log.w("firestore", "Error adding document", e)

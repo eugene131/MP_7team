@@ -1,29 +1,48 @@
 package com.example.movie_line
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.view.View
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.github.dhaval2404.imagepicker.util.IntentUtils
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import kotlinx.android.synthetic.main.content_camera_only.*
+import kotlinx.android.synthetic.main.content_gallery_only.*
+import java.util.*
 
 class AddActivity : AppCompatActivity() {
-    lateinit var etNickname: EditText
-    lateinit var etEmail: EditText
-    lateinit var etPassword: EditText
-    lateinit var etRepeatPassword: EditText
+    companion object {
+        private const val GALLERY_IMAGE_REQ_CODE = 102
+    }
+
+    private var mGalleryUri: Uri? = null
+
+    lateinit var etMovieName: EditText
+    lateinit var etLine: EditText
+
     // for hints
-    lateinit var email_string: String
-    lateinit var password_string: String
-    lateinit var nickname_string: String
-    lateinit var repeat_password_string: String
-    private lateinit var auth: FirebaseAuth
+    lateinit var movie_name_string: String
+    lateinit var line_string: String
+
+    lateinit var imageName: String
+
+    // for collection
+    lateinit var movieName: String
+    lateinit var movieLine: String
+    lateinit var selectedMovieType: String
 
     val MIN_PASSWORD_LENGTH = 6;
 
@@ -31,39 +50,180 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+
+
+        // access the spinner
+        val movie_types = resources.getStringArray(R.array.movie_types)
+
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(this,
+                android.R.layout.simple_spinner_dropdown_item, movie_types)
+            spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,
+                                        view: View, position: Int, id: Long) {
+                selectedMovieType = movie_types[position]
+                // Toast.makeText(this@AddActivity, selectedMovieType , Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+        }
+
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewInitializations()
+
+
     }
 
     fun viewInitializations() {
-        etNickname = findViewById(R.id.et_nickname)
-        etEmail = findViewById(R.id.et_email)
-        etPassword = findViewById(R.id.et_password)
-        etRepeatPassword = findViewById(R.id.et_repeat_password)
+        etMovieName = findViewById(R.id.et_movie_name)
+        etLine = findViewById(R.id.et_line)
 
         //for text hints
-        nickname_string = getString(R.string.nickname)
-        email_string = getString(R.string.email)
-        password_string = getString(R.string.password)
-        repeat_password_string = getString(R.string.passwordRepeat)
+        movie_name_string = getString(R.string.movie_name)
+        line_string = getString(R.string.input_movie_line)
         hideHint()
-
-        // Initialize Firebase Auth
-        auth = Firebase.auth
 
         // To show back button in actionbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun hideHint() {
-        if (etNickname.text!!.isNotEmpty()){ etNickname.hint="" } else etNickname.hint = nickname_string
-        if (etPassword.text!!.isNotEmpty()){etPassword.hint=""} else etPassword.hint = password_string
-        if (etEmail.text!!.isNotEmpty()){ etEmail.hint="" } else etEmail.hint = email_string
-        if (etRepeatPassword.text!!.isNotEmpty()){etRepeatPassword.hint=""} else etRepeatPassword.hint = repeat_password_string
+        if (etMovieName.text!!.isNotEmpty()){ etMovieName.hint="" } else etMovieName.hint = movie_name_string
+        if (etLine.text!!.isNotEmpty()){etLine.hint=""} else etLine.hint = line_string
+    }
 
+    @Suppress("UNUSED_PARAMETER")
+    fun pickGalleryImage(view: View) {
+        ImagePicker.with(this)
+            // Crop Image(User can choose Aspect Ratio)
+            .crop()
+            // User can only select image from Gallery
+            .galleryOnly()
+
+            .galleryMimeTypes( // no gif images at all
+                mimeTypes = arrayOf(
+                    "image/png",
+                    "image/jpg",
+                    "image/jpeg"
+                )
+            )
+            // Image resolution will be less than 1080 x 1920
+            .maxResultSize(1080, 1920)
+            // .saveDir(getExternalFilesDir(null)!!)
+            .start(AddPhotoSampleActivity.GALLERY_IMAGE_REQ_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            // Uri object will not be null for RESULT_OK
+            val uri: Uri = data?.data!!
+            when (requestCode) {
+
+                AddPhotoSampleActivity.GALLERY_IMAGE_REQ_CODE -> {
+                    mGalleryUri = uri
+                    imgGallery.setLocalImage(uri)
+                }
+
+            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun dialog(view: View, text: String) {
+        AlertDialog.Builder(view.context).apply {
+            setTitle("")
+            setMessage(text)
+            setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+            })
+            show()
+        }
+    }
+
+    fun showImageCode(view: View) {
+        val resource = when (view) {
+            imgCameraCode -> R.drawable.img_camera_code
+            else -> 0
+        }
+        ImageViewerDialog.newInstance(resource).show(supportFragmentManager, "")
+    }
+
+    fun showImage(view: View) {
+        val uri = when (view) {
+            imgGallery -> mGalleryUri
+            else -> null
+        }
+
+        uri?.let {
+            startActivity(IntentUtils.getUriViewIntent(this, uri))
+        }
+    }
+
+    private fun uploadImageToFirebase(fileUri: Uri) {
+        val fileName = UUID.randomUUID().toString() +".jpg"
+
+        imageName = fileName
+
+        val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+        refStorage.putFile(fileUri)
+            .addOnSuccessListener(
+                OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                        val imageUrl = it.toString()
+                    }
+                })
+
+            ?.addOnFailureListener(OnFailureListener { e ->
+                print(e.message)
+            })
+    }
+
+    fun saveCollectionToFirebaseDB (view: View, movieName: String, movieLine: String, movieType: String) {
+        val db = Firebase.firestore
+
+        if (movieName.isNotEmpty()) {
+            val user = hashMapOf(
+                "movie_name" to movieName,
+                "movie_type" to movieType,
+                "movie_line" to movieLine,
+                "imageName" to imageName
+            )
+
+            db.collection("movieLinesCollection")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("firestore", "DocumentSnapshot added with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("firestore", "Error adding document", e)
+                }
+
+            Toast.makeText(this, "Line was successfully saved to DB.",Toast.LENGTH_SHORT).show()
+
+            goToMain()
+
+        } else {
+            dialog(view, "Error. Line was not saved")
+        }
+    }
+
+    fun goToMain() {
+        val intent = Intent(this, MainPage::class.java)
+        startActivity(intent)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -71,7 +231,24 @@ class AddActivity : AppCompatActivity() {
         return true
     }
 
-    fun performSignUp (view: View) {
-
+    fun performSaveLine (view: View) {
+        if(etMovieName.text.isEmpty()) {
+            dialog(view, getString(R.string.no_movie_name))
+        } else {
+            if (etLine.text.isEmpty()) {
+                dialog(view, getString(R.string.no_movie_line_text))
+            } else {
+                if (selectedMovieType == null) {
+                    dialog(view, getString(R.string.no_movie_type))
+                } else {
+                    if (mGalleryUri == null) {
+                        dialog(view, getString(R.string.no_movie_image))
+                    } else {
+                        uploadImageToFirebase(mGalleryUri!!)
+                        saveCollectionToFirebaseDB(view, etMovieName.text.toString(), etLine.text.toString(), selectedMovieType)
+                    }
+                }
+            }
+        }
     }
 }

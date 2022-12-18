@@ -72,7 +72,7 @@ class AddProfilePhoto : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun pickProfileImage(view: View) {
-        ImagePicker.with(this)
+        com.github.dhaval2404.imagepicker.ImagePicker.with(this)
             // Crop Square image
             .galleryOnly()
             .cropSquare()
@@ -89,7 +89,7 @@ class AddProfilePhoto : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun pickGalleryImage(view: View) {
-        ImagePicker.with(this)
+        com.github.dhaval2404.imagepicker.ImagePicker.with(this)
             // Crop Image(User can choose Aspect Ratio)
             .crop()
             // User can only select image from Gallery

@@ -41,4 +41,9 @@
         <item name="android:textColor">@color/grey_900</item>
     </style>
 
+    <style name="MySpinnerLook"
+        parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">17sp</item>
+    </style>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.example.movie_line
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.lang.reflect.Type
+
 
 // test
 class MainActivity : AppCompatActivity() {
@@ -79,7 +83,8 @@ class MainActivity : AppCompatActivity() {
             // Input is valid, here send data to your server
             val email = etEmail!!.text.toString()
             val password = etPassword!!.text.toString()
-            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+            var nickname = ""
+            Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
 
             // Here you can call you API
 
@@ -87,6 +92,31 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("firebaseLoginTest", "signInWithEmail:success")
                     val user = auth.currentUser
+
+                    val db = Firebase.firestore
+
+                    val users = db.collection("users")
+                    val query = users.whereEqualTo("email", email).get()
+                        .addOnSuccessListener {
+                                document ->
+                            if (document != null){
+                                for (document1 in document) {
+                                    Log.d("test firebase", "${document1.id} => ${document1.getString("nickname")}")
+                                    nickname = document1.getString("nickname").toString()
+                                }
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.w(TAG, "Error getting documents: ", exception)
+                        }
+
+                    val settings = getSharedPreferences("UserInfo", 0)
+                    val editor = settings.edit()
+                    editor.putString("Email", email)
+                    editor.putString("Password", password)
+                    editor.putString("Nickname", nickname)
+                    editor.apply()
+
                     goToMain()
                 } else {
                     // If sign in fails, display a message to the user.
