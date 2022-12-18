@@ -10,10 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTest">
         <activity
+            android:name=".MyPageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddProfilePhoto"
+            android:exported="false" />
+        <activity
+            android:name=".AddPhotoSampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainPage"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

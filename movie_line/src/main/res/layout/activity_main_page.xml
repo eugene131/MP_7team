@@ -52,6 +52,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fab"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@android:drawable/ic_input_add"

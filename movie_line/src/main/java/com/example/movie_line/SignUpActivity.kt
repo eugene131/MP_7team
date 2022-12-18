@@ -1,6 +1,5 @@
 package com.example.movie_line
 
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
@@ -31,10 +31,14 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setTitle("")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewInitializations()
     }
 
-    fun viewInitializations() {
+    private fun viewInitializations() {
         etNickname = findViewById(R.id.et_nickname)
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
@@ -55,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     // Checking if the input in form is valid
-    fun validateInput(): Boolean {
+    private fun validateInput(): Boolean {
         if (etNickname.text.toString().equals("")) {
             etNickname.setError("Please Enter Nickname")
             return false
@@ -93,11 +97,11 @@ class SignUpActivity : AppCompatActivity() {
         return true
     }
 
-    fun isEmailValid(email: String): Boolean {
+    private fun isEmailValid(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun hideHint() {
+    private fun hideHint() {
         if (etNickname.text!!.isNotEmpty()){ etNickname.hint="" } else etNickname.hint = nickname_string
         if (etPassword.text!!.isNotEmpty()){etPassword.hint=""} else etPassword.hint = password_string
         if (etEmail.text!!.isNotEmpty()){ etEmail.hint="" } else etEmail.hint = email_string
@@ -105,13 +109,20 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun goToLoginPage() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun goToAddProfilePhoto() {
+        val intent = Intent(this, AddProfilePhoto::class.java)
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     fun performSignUp (view: View) {
         if (validateInput()) {
+
+            val db = Firebase.firestore
 
             // Input is valid, here send data to your server
             val nickname = etNickname.text.toString()
@@ -119,15 +130,32 @@ class SignUpActivity : AppCompatActivity() {
             val password = etPassword.text.toString()
             val repeatPassword = etRepeatPassword.text.toString()
 
-            Toast.makeText(this,"회원가입 완료",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.signup_success),Toast.LENGTH_SHORT).show()
             // Here you can call you API
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("testFirebase", "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        goToLoginPage()
+                        val user_uid = auth.currentUser?.uid
+
+                        val user = hashMapOf(
+                            "uid" to "$user_uid",
+                            "nickname" to nickname,
+                            "email" to email
+                        )
+
+                        db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener {
+                                Log.d("firestore", "DocumentSnapshot added with ID: $email")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("firestore", "Error adding document", e)
+                            }
+
+                        goToAddProfilePhoto()
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("testFirebase", "createUserWithEmail:failure", task.exception)

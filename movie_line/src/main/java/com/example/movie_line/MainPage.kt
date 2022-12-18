@@ -1,5 +1,6 @@
 package com.example.movie_line
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.movie_line.databinding.ActivityMainPageBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainPage : AppCompatActivity() {
@@ -40,6 +42,17 @@ class MainPage : AppCompatActivity() {
         TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
             tab.text = tabNames[position]
         }.attach()
+
+        binding.fab.setOnClickListener {
+            //val intent = Intent(this, AddActivity::class.java)
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun goToMyPage() {
+        val intent = Intent(this, MyPageActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

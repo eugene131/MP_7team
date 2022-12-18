@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"
                     android:textAllCaps="false"

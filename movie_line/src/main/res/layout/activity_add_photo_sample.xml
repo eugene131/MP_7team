@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
-    tools:context=".SignUpActivity">
+    android:background="@color/grey_250"
+    tools:context=".AddPhotoSampleActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tv_heading"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/signup_title"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="#000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp"
-        />
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,6 +34,8 @@
             android:focusableInTouchMode="true"
             >
 
+            <include layout="@layout/content_main" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_nickname"
                 android:layout_width="0dp"
@@ -50,7 +45,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
                 android:textColorHint="#808080"
-                app:layout_constraintTop_toTopOf="parent"
                 >
 
                 <EditText
@@ -104,18 +98,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_email"
                 >
 
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:backgroundTint="#FFFFFF"
-                    android:textSize="15sp"
-                    android:inputType="textPassword"
-                    />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -143,7 +125,21 @@
                     android:textSize="15sp"
                     android:inputType="textPassword"
                     />
+                <include layout="@layout/content_gallery_only" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:gravity="center"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#808080"
+                    android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <Button
@@ -153,7 +149,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_repeat_password"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/signup"
+                android:text="add line"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:background="@color/black"
@@ -168,4 +164,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
