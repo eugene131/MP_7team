@@ -17,7 +17,6 @@ class MainListAdapter (val context: Context, val movie_list: ArrayList<movie_lis
         val moviePhoto = view.findViewById<ImageView>(R.id.MoviePhotoImg)
         val movieName = view.findViewById<TextView>(R.id.moviename)
         val movieYear = view.findViewById<TextView>(R.id.MovieYearTv)
-        val movieGenre = view.findViewById<TextView>(R.id.movieGenreTv)
 
         /* ArrayList<Dog>의 변수 dog의 이미지와 데이터를 ImageView와 TextView에 담는다. */
         val movie = movie_list[position]
@@ -25,7 +24,7 @@ class MainListAdapter (val context: Context, val movie_list: ArrayList<movie_lis
         moviePhoto.setImageResource(resourceId)
         movieName.text = movie.name
         movieYear.text = movie.year
-        movieGenre.text = movie.genre
+
 
         return view
     }
