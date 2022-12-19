@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/notice_page" />
             <option value="$PROJECT_DIR$/quotes" />
+            <option value="$PROJECT_DIR$/reademe" />
           </set>
         </option>
       </GradleProjectSettings>

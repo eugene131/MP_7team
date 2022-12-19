@@ -16,3 +16,4 @@ rootProject.name = "Team7_sql"
 include ':app'
 include ':quotes'
 include ':notice_page'
+include ':reademe'
