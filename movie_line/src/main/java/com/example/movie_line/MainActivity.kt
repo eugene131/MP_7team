@@ -2,6 +2,7 @@ package com.example.movie_line
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -13,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.lang.reflect.Type
 
 
 // test
@@ -110,12 +110,19 @@ class MainActivity : AppCompatActivity() {
                             Log.w(TAG, "Error getting documents: ", exception)
                         }
 
-                    val settings = getSharedPreferences("UserInfo", 0)
-                    val editor = settings.edit()
+                    val pref = applicationContext.getSharedPreferences("UserInfo", MODE_PRIVATE)
+                    val editor: SharedPreferences.Editor = pref.edit()
                     editor.putString("Email", email)
                     editor.putString("Password", password)
                     editor.putString("Nickname", nickname)
-                    editor.apply()
+                    editor.commit()
+
+//                    val settings = getSharedPreferences("UserInfo", 0)
+//                    val editor = settings.edit()
+//                    editor.putString("Email", email)
+//                    editor.putString("Password", password)
+//                    editor.putString("Nickname", nickname)
+//                    editor.commit()
 
                     goToMain()
                 } else {

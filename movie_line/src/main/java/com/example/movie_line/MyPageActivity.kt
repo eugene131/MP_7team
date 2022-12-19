@@ -1,16 +1,21 @@
 package com.example.movie_line
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_my_page.*
 
 
 class MyPageActivity : AppCompatActivity() {
+    lateinit var name: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
 
-        val settings = getSharedPreferences("UserInfo", 0)
-        user_nickname.text = settings.getString("Nickname", "").toString()
+        val pref = applicationContext.getSharedPreferences("UserInfo", MODE_PRIVATE)
+
+        //user_nickname.text = pref.getString("Nickname", "")
+        name = pref.getString("Nickname", "").toString()
+        Log.d("test", name)
     }
 }

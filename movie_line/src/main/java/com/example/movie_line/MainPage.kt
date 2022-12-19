@@ -41,8 +41,16 @@ class MainPage : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.syncState()
 
-        //navigationView = findViewById(R.id.nav_view)
-        //navigationView.setNavigationItemSelectedListener(this)
+        navigationView = findViewById(R.id.mainDrawer)
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.myPage -> {
+                    goToMyPage()
+                    true
+                }
+                else -> false
+            }
+        }
 
         val adapter = MyFragmentPagerAdapter(this)
         binding.viewpager.adapter = adapter
@@ -67,17 +75,12 @@ class MainPage : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(toggle.onOptionsItemSelected(item)){
-//            when (item.itemId) {
-//                R.id.myPage -> {
-//                    Log.d("test tap4", "ggg")
-//                }
-//            }
-//            return true
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
 
