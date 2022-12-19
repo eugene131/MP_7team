@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:background="@null"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="Orientation">
+        <TextView
+            android:id="@+id/pageMenu"
+            android:layout_width="637dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="131dp"
+            android:layout_marginTop="30dp"
+            android:text="게시글 신고하기"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="637dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:text="게시글을 신고하는 이유를 선택해주세요."
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="13dp"
+            android:text="불법광고"
+            android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="7dp"
+            android:text="도배성글/댓글반복"
+            android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="7dp"
+            android:text="욕설/인신공격"
+            android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="7dp"
+            android:text="개인정보노출"
+            android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/checkbox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="7dp"
+            android:text="기타"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="40dp"/>
+
+        <Button
+            android:id="@+id/button"
+            android:text="신고하기"
+            android:onClick="goToMain"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="245dp"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

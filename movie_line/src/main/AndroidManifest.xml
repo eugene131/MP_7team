@@ -17,6 +17,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".RePortActivity"
+            android:exported="true" />
+        <activity
             android:name=".AddProfilePhoto"
             android:exported="false" />
         <activity
