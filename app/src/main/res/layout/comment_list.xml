@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/coment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        tools:layout_editor_absoluteY="16dp"
+        tools:text="comentname" />
+
+    <TextView
+        android:id="@+id/ComentYearTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/coment"
+        app:layout_constraintTop_toBottomOf="@+id/coment"
+        app:layout_constraintVertical_bias="0.782"
+        tools:text="Year" />
+
+    <TextView
+        android:id="@+id/ComentnameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ComentYearTV"
+        app:layout_constraintStart_toEndOf="@+id/ComentYearTV"
+        app:layout_constraintTop_toTopOf="@+id/ComentYearTV"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="name" />
+
+    <Button
+        android:id="@+id/good_button"
+        android:layout_width="54dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="16dp"
+        android:text="good"
+        android:textSize="5dp"
+        app:layout_constraintStart_toEndOf="@+id/ComentnameTv"
+        app:layout_constraintTop_toBottomOf="@+id/coment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
