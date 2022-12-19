@@ -17,24 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/quote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/hanna"
-        android:letterSpacing="0.1"
-        android:lineSpacingExtra="5dp"
-        android:text="인생은 네가 본 영화와는 달라.. 인생이..훨씬 힘들지"
-        android:textAlignment="center"
-
-        android:textColor="#000000"
-        android:textSize="29sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <!--    좋아요/댓글/신고-->
 
@@ -47,6 +29,26 @@
         android:src="@drawable/movie_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/hanna"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="5dp"
+        android:text="명대사"
+        android:textAlignment="center"
+
+        android:textColor="#000000"
+        android:textSize="29sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/movie_name"
