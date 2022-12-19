@@ -21,11 +21,13 @@ class QuoteActivity : AppCompatActivity() {
 
         }
         //이미지 추가하는 부분
-        Quote_page("명대사","올빼미의 등장인물",R.drawable.thenightowl)
+        //Quote_page("명대사","올빼미의 등장인물",R.drawable.thenightowl)
+        Quote_page("명대사"," 영화의 등장인물",R.drawable.movie_background)
+
         //좋아요, 댓글, 신고 버튼 클릭 이벤트 구현
         var star=false
         var heart=false
-        var heart_count=0
+        var heart_count=0 //좋아요 카운트
         binding.buttonStar.setOnClickListener{//별 이미지 변하게
             if (star==false){
                 binding.buttonStar.setBackgroundResource(R.drawable.ic_baseline_star_24)

@@ -28,8 +28,8 @@ class notice_page : AppCompatActivity() {
             datas.add("item $i")
         }
         */
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        //리스트에 있는 것들을 다 보여주는 방식.
+        //데이터와 타임 리스트를 따로 둘 게 아니라 구조체처럼 정의해서 써야될 것 같은데        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = Notice_Adapter(datas,times)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(this,
