@@ -36,6 +36,7 @@
     <string name="movie_name">movie name</string>
 
     <string name="input_movie_line">대사 내용</string>
+    <string name="input_movie_year">movie year</string>
 
     <string name="selected_item">Selected item:</string>
 
@@ -47,7 +48,7 @@
 
     <string name="no_movie_line_text">대사 내용 입력하세요</string>
 
-    <string name="no_movie_type">장르 선택하세요</string>
+    <string name="no_movie_year">movie year 입력하세요</string>
 
     <string name="no_movie_image">이미지 선택하세요</string>
 

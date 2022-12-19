@@ -63,17 +63,10 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/mainDrawer"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/menu_navigation"/>
 </androidx.drawerlayout.widget.DrawerLayout>
-
-<!--
-<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tabContent" />
--->

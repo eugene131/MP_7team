@@ -68,6 +68,31 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_movie_year"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.7"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:textColorHint="#808080"
+                app:layout_constraintTop_toBottomOf="@+id/layout_movie_name"
+                >
+
+                <EditText
+                    android:id="@+id/et_movie_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#808080"
+                    android:backgroundTint="#FFFFFF"
+                    android:textSize="15sp"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_line"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent="0.7"
@@ -76,7 +101,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 android:textColorHint="#808080"
-                app:layout_constraintTop_toBottomOf="@+id/layout_movie_name"
+                app:layout_constraintTop_toBottomOf="@+id/layout_movie_year"
                 >
 
                 <EditText
@@ -94,32 +119,6 @@
                     android:textSize="15sp"
                     android:inputType="textMultiLine"
                     />
-
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:textSize = "20sp"
-                    android:id="@+id/linear_layout"
-                    android:orientation="vertical"
-                    android:gravity = "center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-
-                        android:id="@+id/txtView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="장르 선택하세요"
-                        android:textSize = "17sp" />
-
-                    <Spinner
-                        style="@style/MySpinnerLook"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/txtView"/>
-                </LinearLayout>
-
                 <include layout="@layout/content_gallery_only" />
 
             </com.google.android.material.textfield.TextInputLayout>

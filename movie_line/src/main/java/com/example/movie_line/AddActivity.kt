@@ -14,7 +14,6 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.IntentUtils
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -32,10 +31,12 @@ class AddActivity : AppCompatActivity() {
 
     lateinit var etMovieName: EditText
     lateinit var etLine: EditText
+    lateinit var etMovieYear: EditText
 
     // for hints
     lateinit var movie_name_string: String
     lateinit var line_string: String
+    lateinit var movie_year_string: String
 
     lateinit var imageName: String
 
@@ -50,31 +51,6 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-
-
-        // access the spinner
-        val movie_types = resources.getStringArray(R.array.movie_types)
-
-        val spinner = findViewById<Spinner>(R.id.spinner)
-        if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_dropdown_item, movie_types)
-            spinner.adapter = adapter
-
-        spinner.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>,
-                                        view: View, position: Int, id: Long) {
-                selectedMovieType = movie_types[position]
-                // Toast.makeText(this@AddActivity, selectedMovieType , Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
-        }
-
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -87,10 +63,12 @@ class AddActivity : AppCompatActivity() {
     fun viewInitializations() {
         etMovieName = findViewById(R.id.et_movie_name)
         etLine = findViewById(R.id.et_line)
+        etMovieYear = findViewById(R.id.et_movie_year)
 
         //for text hints
         movie_name_string = getString(R.string.movie_name)
         line_string = getString(R.string.input_movie_line)
+        movie_year_string = getString(R.string.input_movie_year)
         hideHint()
 
         // To show back button in actionbar
@@ -100,6 +78,7 @@ class AddActivity : AppCompatActivity() {
     fun hideHint() {
         if (etMovieName.text!!.isNotEmpty()){ etMovieName.hint="" } else etMovieName.hint = movie_name_string
         if (etLine.text!!.isNotEmpty()){etLine.hint=""} else etLine.hint = line_string
+        if (etMovieYear.text!!.isNotEmpty()){etMovieYear.hint=""} else etMovieYear.hint = movie_year_string
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -192,13 +171,13 @@ class AddActivity : AppCompatActivity() {
             })
     }
 
-    fun saveCollectionToFirebaseDB (view: View, movieName: String, movieLine: String, movieType: String) {
+    fun saveCollectionToFirebaseDB (view: View, movieName: String, movieLine: String, movieYear: String) {
         val db = Firebase.firestore
 
         if (movieName.isNotEmpty()) {
             val user = hashMapOf(
                 "movie_name" to movieName,
-                "movie_type" to movieType,
+                "movie_year" to movieYear,
                 "movie_line" to movieLine,
                 "imageName" to imageName
             )
@@ -238,14 +217,14 @@ class AddActivity : AppCompatActivity() {
             if (etLine.text.isEmpty()) {
                 dialog(view, getString(R.string.no_movie_line_text))
             } else {
-                if (selectedMovieType == null) {
-                    dialog(view, getString(R.string.no_movie_type))
+                if (etMovieYear.text.isEmpty()) {
+                    dialog(view, getString(R.string.no_movie_year))
                 } else {
                     if (mGalleryUri == null) {
                         dialog(view, getString(R.string.no_movie_image))
                     } else {
                         uploadImageToFirebase(mGalleryUri!!)
-                        saveCollectionToFirebaseDB(view, etMovieName.text.toString(), etLine.text.toString(), selectedMovieType)
+                        saveCollectionToFirebaseDB(view, etMovieName.text.toString(), etLine.text.toString(), etMovieYear.text.toString())
                     }
                 }
             }
