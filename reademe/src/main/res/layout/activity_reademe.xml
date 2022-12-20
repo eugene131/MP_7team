@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Reademe"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="기술 문서\n"
-        android:textSize="24dp"
-        android:textColor="#000000"
-
-        />
 
     <ScrollView
         android:id="@+id/bio_scroll"
@@ -25,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.2"
-            android:text="=====기술문서-배유진=====\n
+            android:text="\n\n=====기술문서-배유진=====\n
 Create_coment_demo()\n
 댓글의 예시를 어레이리스트에 담아 리턴해줌
 View_activity_comment()\n
@@ -43,22 +35,22 @@ class QuoteActivity\n
 별 버튼을 클릭시 색칠된 별 이미지로 변경하며 반대의 경우도 구현
 좋아요 버튼 클릭시 하트 이미지를 변경하고 좋아요 수에 증감 반영
 댓글 버튼과 신고 버튼 클릭시 각 페이지로 이동하도록 함\n
-class notice_page
+class notice_page\n
 알림 페이지를 생성하는 클래스
 알림 내용과 알림 발생 시간 리스트를 Notice_Adapter로 넘겨줌
 각 아이템에 데코레이션 적용\n
-class Notice_Adapter
+class Notice_Adapter\n
 알림 내용과 알림 발생 시간 리스트를 notice_page에서 받아와 아이템을 생성
 아이템 클릭시 클릭이벤트를 통해 댓글 페이지로 넘어가도록 함\n
-class Readme
-스크롤뷰를 구현해 리드미 문서를 출력하는 페이지를 생성\n
+class Readme\n
+스크롤뷰를 구현해 리드미 문서를 출력하는 페이지를 생성\n\n
 
 =====기술문서-정민서=====\n
 class ReportActivity\n
 잘못된 정보 신고화면을 위한 클래스
 신고 사유에 대한 5가지 CheckBox구성
 “기타”항목을 클릭할 경우 editText 출력하여 상세사유 작성
-“신고하기”버튼 클릭 시 “신고되었습니다” Toast메시지 띄우고 메인화면으로 넘어감
+“신고하기”버튼 클릭 시 “신고되었습니다” Toast메시지 띄우고 메인화면으로 넘어감\n\n
 =====기술문서-이바딤=====\n"
             android:textColor="#000000"
             android:textSize="18dp" />
