@@ -8,7 +8,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 data class MovieInfo(
     var movie_name: String? = "",
     var movie_line: String? = "",
-    val year : String? = "",
+    val year : Int? = 0,
     val imageName : String? = ""
 ) {
 

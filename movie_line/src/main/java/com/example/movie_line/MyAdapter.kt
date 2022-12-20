@@ -1,5 +1,6 @@
 package com.example.movie_line
 
+import android.R
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
@@ -10,9 +11,11 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_line.databinding.ItemRecyclerviewBinding
 
+
 class MyViewHolder(val binding: ItemRecyclerviewBinding): RecyclerView.ViewHolder(binding.root)
 
 class MyAdapter(val datas: MutableList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
 
     override fun getItemCount(): Int{
         return datas.size
@@ -22,13 +25,13 @@ class MyAdapter(val datas: MutableList<String>): RecyclerView.Adapter<RecyclerVi
             = MyViewHolder(ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding=(holder as MyViewHolder).binding
-        binding.itemData.text= datas[position]
+
+        val binding =(holder as MyViewHolder).binding
+        binding.itemData.text = datas[position]
     }
 }
 
 class MyDecoration(val context: Context): RecyclerView.ItemDecoration() {
-
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
