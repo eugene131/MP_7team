@@ -119,6 +119,11 @@ class SignUpActivity : AppCompatActivity() {
         return true
     }
 
+    fun goLoginPage() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     fun performSignUp (view: View) {
         if (validateInput()) {
 
@@ -154,7 +159,8 @@ class SignUpActivity : AppCompatActivity() {
                                 Log.w("firestore", "Error adding document", e)
                             }
 
-                        goToAddProfilePhoto()
+                        //goToAddProfilePhoto()
+                        goLoginPage()
 
                     } else {
                         // If sign in fails, display a message to the user.

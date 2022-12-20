@@ -4,47 +4,52 @@
     android:layout_height="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/MoviePhotoImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <ImageView
-        android:id="@+id/MoviePhotoImg"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/moviename"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/MoviePhotoImg"
+            app:layout_constraintTop_toTopOf="@+id/MoviePhotoImg"
+            android:textColor="#0277BD"
+            tools:text="Breed"/>
 
-    <TextView
-        android:id="@+id/moviename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/MoviePhotoImg"
-        app:layout_constraintTop_toTopOf="@+id/MoviePhotoImg"
-        tools:text="Breed"/>
+        <TextView
+            android:id="@+id/MovieYearTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/moviename"
+            tools:text="Year" />
 
-    <TextView
-        android:id="@+id/MovieYearTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/MoviePhotoImg"
-        app:layout_constraintStart_toStartOf="@+id/moviename"
-        tools:text="Year" />
+        <TextView
+            android:id="@+id/movieGenreTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/MovieYearTv"
+            app:layout_constraintStart_toEndOf="@+id/MovieYearTv"
+            app:layout_constraintTop_toTopOf="@+id/MovieYearTv"
+            tools:text="" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/movieGenreTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/MovieYearTv"
-        app:layout_constraintStart_toEndOf="@+id/MovieYearTv"
-        app:layout_constraintTop_toTopOf="@+id/MovieYearTv"
-        tools:text="Genre" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MyPageActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"
@@ -42,15 +49,6 @@
                 android:padding="3dp"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/ic_person" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:id="@+id/fab_add_photo"
-                style="@style/FabStyle"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:onClick="pickProfileImage" />
         </RelativeLayout>
 
         <TextView
@@ -62,9 +60,22 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="nickname here">
+            android:text="닉네임">
 
         </TextView>
+
+        <TextView
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="데모 데모 데모"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
 
     </LinearLayout>
 

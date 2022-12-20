@@ -173,11 +173,11 @@ class AddActivity : AppCompatActivity() {
 
     fun saveCollectionToFirebaseDB (view: View, movieName: String, movieLine: String, movieYear: String) {
         val db = Firebase.firestore
-
+        val movieYearNum = movieYear.toInt()
         if (movieName.isNotEmpty()) {
             val user = hashMapOf(
                 "movie_name" to movieName,
-                "movie_year" to movieYear,
+                "year" to movieYearNum,
                 "movie_line" to movieLine,
                 "imageName" to imageName
             )

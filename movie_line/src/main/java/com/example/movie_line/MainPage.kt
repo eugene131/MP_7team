@@ -51,16 +51,25 @@ class MainPage : AppCompatActivity() {
         view_activity_movie()
 
 
-//        navigationView = findViewById(R.id.mainDrawer)
-//        navigationView.setNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.myPage -> {
-//                    goToMyPage()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+        navigationView = findViewById(R.id.mainDrawer)
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.myPage -> {
+                    goToMyPage()
+                    true
+                }
+
+                R.id.logout -> {
+                    goLogout()
+                    true
+                }
+                R.id.help -> {
+                    goToHelpPage()
+                    true
+                }
+                else -> false
+            }
+        }
 //
 //        val adapter = MyFragmentPagerAdapter(this)
 //        binding.viewpager.adapter = adapter
@@ -160,6 +169,16 @@ class MainPage : AppCompatActivity() {
 
     fun goToMyPage() {
         val intent = Intent(this, MyPageActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goLogout() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goToHelpPage() {
+        val intent = Intent(this, Reademe::class.java)
         startActivity(intent)
     }
 

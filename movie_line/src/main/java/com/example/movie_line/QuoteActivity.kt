@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import com.example.movie_line.databinding.ActivityQuoteBinding
 
@@ -65,12 +67,14 @@ class QuoteActivity : AppCompatActivity() {
             //좋아요 클릭 전후로 좋아요 카운트를 다시 표시
             binding.heartCount.setText(Integer.toString(heart_count))
         }
+
         binding.buttonComment.setOnClickListener{//댓글 버튼을 눌렀을 때 댓글 창이 띄워지도록
             val intent: Intent = Intent(this,TestActivity::class.java)
             startActivity(intent)
         }
+
         binding.buttonSiren.setOnClickListener{//신고 버튼을 눌렀을 때 신고 창이 띄워지도록
-            val intent: Intent = Intent(this,TestActivity::class.java)
+            val intent: Intent = Intent(this,RePortActivity::class.java)
             startActivity(intent)
         }
 
